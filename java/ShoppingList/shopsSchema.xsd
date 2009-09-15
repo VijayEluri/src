@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    
+    <xs:element name="Section">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Item" type="xs:string" minOccurs="1" maxOccurs="unbounded" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Shop">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Section" minOccurs="1" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="ShopsSchema" minOccurs="1">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="Shop" minOccurs="1">
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

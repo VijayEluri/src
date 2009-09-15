@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ShopsSchema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:noNamespaceSchemaLocation="shopsSchema.xsd">
+
+    <Shop name="Globus" city="Chomutov">
+
+        <Section id="1" name="Elektronika">
+            <Item>Elektronika</Item>
+        </Section>
+        <Section id="2" name="Napoje">
+            <Item>Napoje</Item>
+            <Item>Stavy</Item>
+        </Section>
+        <Section id="3" name="Napoje">
+            <Item>Napoje</Item>
+            <Item>Stavy</Item>
+        </Section>
+
+    </Shop>
+
+</ShopsSchema>
