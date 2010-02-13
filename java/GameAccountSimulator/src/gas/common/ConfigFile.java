@@ -1,4 +1,4 @@
-package gameAccountSimulator;
+package gas.common;
 
 import java.io.*;
 import java.util.StringTokenizer;

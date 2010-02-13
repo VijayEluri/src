@@ -1,4 +1,8 @@
-package gameAccountSimulator;
+package gas.console;
+
+import gas.common.ConfigFile;
+import gas.core.EndingConditionType;
+import gas.core.GameAccountSimulator;
 
 public class GASClient {
 
@@ -14,6 +18,7 @@ public class GASClient {
             gas.setTargetIncome(cf.getTargetIncome());
             gas.addEndingConditionType(EndingConditionType.TARGET_INCOME);
             gas.setStartingAmount(cf.getStartingAmount());
+            gas.setSeh(new SimulationEventHandlerImpl());
             if (cl.cyclesCount != Integer.MAX_VALUE) {
                 gas.addEndingConditionType(EndingConditionType.CYCLES_PASSED);
                 gas.setTargetCyclesCount(cl.cyclesCount);

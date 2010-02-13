@@ -1,5 +1,6 @@
-package gameAccountSimulator;
+package gas.util;
 
+import gas.common.Land;
 import java.util.Comparator;
 
 public class LandCurrentPriceComparator implements Comparator {

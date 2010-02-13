@@ -9,7 +9,7 @@
  * Created on 9.2.2010, 22:05:18
  */
 
-package gameAccountSimulatorGui;
+package gas.gui;
 
 /**
  *

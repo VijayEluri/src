@@ -1,5 +1,9 @@
-package gameAccountSimulator;
+package gas.core;
 
+import gas.util.LandIncomePerPriceComparator;
+import gas.util.LandCurrentPriceComparator;
+import gas.common.Land;
+import gas.common.LandType;
 import java.util.*;
 
 public class LandCollection {
@@ -7,7 +11,6 @@ public class LandCollection {
     LandCollection() {
         factory = new LandFactory();
         lands = new ArrayList<Land>();
-        recentlyBought = new PurchaseInfo();
     }
 
     public void createCommonLandCollection() {
@@ -53,7 +56,6 @@ public class LandCollection {
         double balance = budget - land.getCurrentPrice();
         
         if (balance > 0.0) {
-            recentlyBought.purchase(land);
             land.incQuantity();
         }
 
@@ -89,15 +91,7 @@ public class LandCollection {
 
         return effortableLand;
     }
-
-    public void printRecentlyBought() {
-        recentlyBought.printReceipt();
-        recentlyBought.clear();
-        System.out.println("--------------------------------------------------------------------------------");
-    }
     
     private ArrayList<Land> lands;
     private LandFactory factory;
-    private PurchaseInfo recentlyBought;
-
 }

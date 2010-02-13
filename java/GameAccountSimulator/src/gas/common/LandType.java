@@ -1,4 +1,4 @@
-package gameAccountSimulator;
+package gas.common;
 
 public enum LandType {
     FARM, LUMBER_MILL, TAVERN, STONE_QUARRY, BARRAKS, BLACKSMITH, TEMPLE,
