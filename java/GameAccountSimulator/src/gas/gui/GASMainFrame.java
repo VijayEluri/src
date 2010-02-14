@@ -1,20 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * GASMainFrame.java
- *
- * Created on 9.2.2010, 22:05:18
- */
-
 package gas.gui;
 
-/**
- *
- * @author eTeR
- */
 public class GASMainFrame extends javax.swing.JFrame {
 
     /** Creates new form GASMainFrame */

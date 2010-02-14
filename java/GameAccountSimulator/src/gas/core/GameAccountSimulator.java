@@ -54,7 +54,7 @@ public class GameAccountSimulator {
         this.targetCyclesCount = targetCyclesCount;
     }
 
-    public void setSeh(SimulationEventHandler seh) {
+    public void setSimulationEventHandler(SimulationEventHandler seh) {
         this.seh = seh;
     }
 
