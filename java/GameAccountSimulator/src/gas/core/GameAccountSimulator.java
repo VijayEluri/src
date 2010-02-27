@@ -1,5 +1,9 @@
-package gameAccountSimulator;
+package gas.core;
 
+import gas.common.Land;
+import gas.common.SimulationEventHandler;
+import gas.common.SimulationEndEventParams;
+import gas.common.PurchaseEventParams;
 import java.util.ArrayList;
 
 public class GameAccountSimulator {
@@ -50,7 +54,12 @@ public class GameAccountSimulator {
         this.targetCyclesCount = targetCyclesCount;
     }
 
+    public void setSimulationEventHandler(SimulationEventHandler seh) {
+        this.seh = seh;
+    }
+
     public void updateAccount() {
+        seh.handleBeginCycle();
 
         // buy new land(s)
         boolean buyMore = true;
@@ -59,40 +68,39 @@ public class GameAccountSimulator {
             buyMore = false;
 
             if (lands.getTotalIncome() > 0) {
-                double balance = lands.buyLand(lands.getBestLand(), accountBalance);
+                Land land = lands.getBestLand();
+                double balance = lands.buyLand(land, accountBalance);
 
                 if (balance > 0) {
+                    seh.handlePurchase(new PurchaseEventParams(land));
                     accountBalance = balance;
                     buyMore = true;
                 }
             }
             else {
                 Land land = lands.getEffortableLand(accountBalance);
-                if (land != null)
+                if (land != null) {
                     accountBalance = lands.buyLand(land, accountBalance);
-                else
+                    seh.handlePurchase(new PurchaseEventParams(land));
+                }
+                else {
                     // ouch! we haven't enough money to buy first land!
                     endingConditions.add(EndingConditionType.FORCED);
+                }
             }
         }
 
-        lands.printRecentlyBought();
         totalTimeElapsed += tickDuration;
         accountBalance += lands.getTotalIncome();
-    }
-
-    private void printResults() {
-        System.out.println("Simulation ended ...");
-        System.out.println(String.format("Total time elapsed: %d days %d hours and %d minutes", totalTimeElapsed / 1440, (totalTimeElapsed % 1440) / 60, (totalTimeElapsed % 1440) % 60));
-        
+        seh.handleEndCycle();
     }
 
     public void run() {
-        System.out.println("Simulation started ...");
+        seh.handleStartSimulation();
         while (!passedEndingCondition()) {
             updateAccount();
         }
-        printResults();
+        seh.handleEndSimulation(new SimulationEndEventParams(totalTimeElapsed));
     }
 
     private boolean passedEndingCondition() {
@@ -107,6 +115,7 @@ public class GameAccountSimulator {
                     break;
                 case FORCED:
                     passed = true;
+                    break;
                 default:
                     passed = false;
             }
@@ -125,4 +134,5 @@ public class GameAccountSimulator {
     private ArrayList<EndingConditionType> endingConditions;
     private double targetIncome;
     private int targetCyclesCount;
+    private SimulationEventHandler seh;
 }

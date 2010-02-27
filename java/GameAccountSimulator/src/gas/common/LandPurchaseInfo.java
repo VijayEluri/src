@@ -1,4 +1,4 @@
-package gameAccountSimulator;
+package gas.common;
 
 public class LandPurchaseInfo {
 

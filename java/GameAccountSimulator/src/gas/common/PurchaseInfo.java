@@ -1,5 +1,6 @@
-package gameAccountSimulator;
+package gas.common;
 
+import gas.util.LandCurrentPriceComparator;
 import java.util.*;
 
 public class PurchaseInfo {
